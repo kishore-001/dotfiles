@@ -22,15 +22,6 @@ Run the installation script to create symbolic links:
 ./install.sh
 ```
 
-## **Symlink Setup**
-The **install.sh** script creates symlinks so that all configurations stay in `~/dotfiles` but are used system-wide. Example:
-```sh
-ln -s ./kitty ~/.config/kitty
-ln -s ./rofi ~/.config/rofi
-ln -s ./waybar ~/.config/waybar
-ln -s ./bashrc/.bashrc ~/.bashrc
-ln -s ./fastfetch ~/.config/fastfetch
-```
 
 
 Feel free to fork and customize this setup to fit your workflow! 🚀
