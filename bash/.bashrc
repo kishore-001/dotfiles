@@ -42,6 +42,8 @@ alias fan="sensors | grep fan"
 alias v="nvim"
 alias vb="nvim .bashrc"
 alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
+alias bm="blendr"
+
 # ------------------------------ finish -------------------------------------#
 
 ff

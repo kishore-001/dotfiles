@@ -34,7 +34,7 @@ window#waybar {
 }
 
 /* Modules (Clock, Battery, Network, etc.) */
-#clock, #battery, #network, #tray, #pulseaudio {
+#clock, #battery, #network, #tray, #pulseaudio , #bluetooth {
     padding: 3px 8px;
     margin: 3px;
     background: rgba(42, 59, 67, 0.8);
