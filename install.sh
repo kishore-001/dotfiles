@@ -9,7 +9,7 @@ echo "Setting up dotfiles from $dotfiles_dir..."
 mkdir -p "$HOME/.config"
 
 # Create symlinks
-ln -sf "$dotfiles_dir/bashrc/.bashrc" "$HOME/.bashrc"
+ln -sf "$dotfiles_dir/bash/.bashrc" "$HOME/.bashrc"
 ln -sf "$dotfiles_dir/kitty" "$HOME/.config/kitty"
 ln -sf "$dotfiles_dir/rofi" "$HOME/.config/rofi"
 ln -sf "$dotfiles_dir/waybar" "$HOME/.config/waybar"
