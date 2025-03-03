@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["custom/cpu", "memory", "custom/gpu", "custom/fan"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "battery", "network", "bluetooth"],
 
@@ -12,12 +12,14 @@
 
     "battery": {
         "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ⚡",
+        "format-full": "{capacity}%  Full",
         "format-icons": ["", "", "", "", ""]
     },
 
     "network": {
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}",
+        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ipaddr}",
         "format-disconnected": "󰖪 Disconnected"
     },
 
@@ -41,6 +43,34 @@
         "format-disabled": "󰂲 Off",
         "tooltip-format": "{device_alias} ({device_address})",
         "max-length": 20
+    },
+
+    "custom/cpu": {
+    "exec": "~/.config/waybar/scripts/cpu_usage.sh",
+    "interval": 3,
+    "tooltip": true,
+    "id": "custom-cpu"
+    },
+
+
+    "memory": {
+        "format": "󰍛 {used}/{total} GB",
+        "tooltip": true,
+        "tooltip-format": "Used: {used}GB / {total}GB | Free: {free}GB"
+    },
+
+    "custom/gpu": {
+        "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+        "interval": 3,
+        "tooltip": true,
+	"id": "custom-gpu"
+    },
+
+    "custom/fan": {
+        "exec": "~/.config/waybar/scripts/fan_speed.sh",
+        "interval": 3,
+        "tooltip": true,
+	"id": "custom-fan"
     }
 }
 

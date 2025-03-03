@@ -43,6 +43,10 @@ alias v="nvim"
 alias vb="nvim .bashrc"
 alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
 alias bm="blendr"
+alias blueoff="bluetoothctl power off"
+alias blueon="bluetoothctl power on"
+alias wifioff="nmcli radio wifi off"
+alias wifion="nmcli radio wifi on"
 
 # ------------------------------ finish -------------------------------------#
 
