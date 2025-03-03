@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "modules-left": ["custom/cpu", "memory", "custom/gpu", "custom/fan"],
+    "modules-left": ["custom/cpu", "memory", "custom/gpu", "custom/fan","custom/ip"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "battery", "network", "bluetooth"],
 
@@ -18,10 +18,11 @@
     },
 
     "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": "󰈀 {ipaddr}",
-        "format-disconnected": "󰖪 Disconnected"
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": "󰈀  Connected",
+    "format-disconnected": "󰖪 Disconnected",
     },
+ 
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -55,8 +56,6 @@
 
     "memory": {
         "format": "󰍛 {used}/{total} GB",
-        "tooltip": true,
-        "tooltip-format": "Used: {used}GB / {total}GB | Free: {free}GB"
     },
 
     "custom/gpu": {
@@ -71,6 +70,13 @@
         "interval": 3,
         "tooltip": true,
 	"id": "custom-fan"
-    }
+    },
+
+   "custom/ip": {
+    "exec": "~/.config/waybar/scripts/ip_address.sh",
+    "interval": 5,
+    "tooltip": true,
+    "id": "custom-ip"
+} 
 }
 

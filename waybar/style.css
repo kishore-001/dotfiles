@@ -43,7 +43,8 @@ window#waybar {
 #ram, 
 #memory,
 #custom-gpu, 
-#custom-fan {
+#custom-fan,
+#custom-ip {
     padding: 3px 8px;
     margin: 3px;
     background: rgba(42, 59, 67, 0.8);
@@ -60,7 +61,8 @@ window#waybar {
 #custom-cpu:hover,
 #ram:hover,
 #custom-gpu:hover,
-#custom-fan:hover {
+#custom-fan:hover,
+#custom-ip:hover {
     background: #F9A875;
     color: #1E2B33;
 }
@@ -122,6 +124,10 @@ window#waybar {
 /* Fan Speed */
 #custom-fan {
     color: #FAB387;
+}
+
+#custom-ip {
+    color: #A000FC;
 }
 
 /* Tray */
