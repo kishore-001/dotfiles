@@ -10,7 +10,8 @@ return {
     local treesitter = require("nvim-treesitter.configs")
 
     -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    treesitter.setup({
+      -- enable syntax highlighting
       highlight = {
         enable = true,
       },
@@ -42,8 +43,19 @@ return {
         "query",
         "vimdoc",
         "c",
-        "python"
-      },
+        "python",
+        "asm",          -- Assembly (nasm/gas)
+        "powershell",   -- PowerShell scripting
+        "go",           -- Go (used in malware analysis & exploits)
+        "rust",         -- Rust (growing in security & exploit dev)
+        "perl",         -- Perl (old-school exploits & scripting)
+        "ruby",         -- Ruby (Metasploit, security tools)
+        "java",         -- Java (Android malware, exploit dev)
+        "kotlin",       -- Kotlin (mobile security)
+        "swift",        -- Swift (iOS security & reverse engineering)
+        "php",          -- PHP (web exploitation)
+        "sql"           -- SQL (SQL injection testing)
+      }, 
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -56,3 +68,4 @@ return {
     })
   end,
 }
+
