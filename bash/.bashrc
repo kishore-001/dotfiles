@@ -38,7 +38,7 @@ alias bye="shutdown now"
 alias nm="nmtui"
 alias fan="sensors | grep fan"
 alias v="nvim"
-alias vb="nvim .bashrc"
+alias vb="nvim ~/.bashrc"
 alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
 alias bm="blendr"
 alias blueoff="bluetoothctl power off"
@@ -46,7 +46,7 @@ alias blueon="bluetoothctl power on"
 alias wifioff="nmcli radio wifi off"
 alias wifion="nmcli radio wifi on"
 alias iruka="ping 8.8.8.8"
-
+alias av="activate_venv"
 # ------------------------------ finish -------------------------------------#
 
 ff
