@@ -46,6 +46,8 @@ alias blueon="bluetoothctl power on"
 alias wifioff="nmcli radio wifi off"
 alias wifion="nmcli radio wifi on"
 alias iruka="ping 8.8.8.8"
+alias st="speedtest-cli"
+
 # ------------------------------ finish -------------------------------------#
 
 ff
