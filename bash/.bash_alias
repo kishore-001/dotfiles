@@ -1,21 +1,46 @@
 #!/bin/bash
 
+# -------------------------------- This is used to store the shortcut key --------------------------------
+
+# ------ directory --------
+
 alias ..="cd ../.."
 alias .="cd .."
+
+# ------ application -------
+
 alias x="exit"
 alias cls="clear"
 alias bye="shutdown now"
-alias nm="nmtui"
-alias fan="sensors | grep fan"
 alias v="nvim"
-alias eb="nvim ~/.bashrc"
 alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
+
+# ------ network -------
+
+alias nm="nmtui"
 alias bm="blendr"
 alias boff="bluetoothctl power off"
 alias bon="bluetoothctl power on"
 alias woff="nmcli radio wifi off"
 alias won="nmcli radio wifi on"
+
+# ------ miscellaneous --------
+
 alias iruka="ping 8.8.8.8"
 alias st="speedtest-cli"
 alias thm="sudo openvpn ~/Downloads/vpn/tryhackme/shadow.exe.ovpn"
 alias spt="spotify_player"
+alias ll="lsd -l"
+alias ls="lsd"
+
+# ------ bash -------
+
+# ------ edit -------
+
+alias eb="nvim ~/.bashrc"
+alias ea="nvim ~/.bash_alias"
+alias ef="nvim ~/.bash_functions"
+
+# ------ source ------
+
+alias sb="source ~/.bashrc"
