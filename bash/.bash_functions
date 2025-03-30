@@ -100,7 +100,7 @@ denv() {
 
 # ASUS PROFILE MODES
 
-am() {
+pm() {
   # Get the current profile mode and extract the mode name
   CURRENT_MODE=$(asusctl profile -p | awk -F 'is ' '{print $2}')
 
