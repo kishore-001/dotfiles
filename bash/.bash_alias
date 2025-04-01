@@ -14,6 +14,7 @@ alias cls="clear"
 alias bye="shutdown now"
 alias v="nvim"
 alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
+alias tm="btop"
 
 # ------ network -------
 
@@ -32,6 +33,7 @@ alias thm="sudo openvpn ~/Downloads/vpn/tryhackme/shadow.exe.ovpn"
 alias spt="spotify_player"
 alias ll="lsd -l"
 alias ls="lsd"
+alias c="wl-copy"
 
 # ------ bash -------
 
