@@ -1,0 +1,125 @@
+* {
+	base00: #1a0000; /* Very dark red background */
+	base01: #260000; /* Slightly lighter dark red */
+	base02: #330000; /* Deeper blood tone */
+	base03: #4d0000; /* Used for background accents */
+	base04: #cfa3a3; /* Pale pink for soft contrast */
+	base05: #ffe6e6; /* Light blood-washed text */
+	base06: #ffe6e6;
+	base07: #ffffff; /* Full white for strong text contrast */
+	base08: #ff4d4d; /* Bright blood red */
+	base09: #ff6666; /* Lighter red (alerts/warnings) */
+	base0A: #ff9999; /* Blush for subtle highlights */
+	base0B: #ffb3b3; /* Very soft red (used sparingly) */
+	base0C: #cc6666; /* Muted reddish */
+	base0D: #990000; /* Strong, deep red (main highlight) */
+	base0E: #b30000; /* Gothic red (secondary highlight) */
+	base0F: #ff1a1a; /* Vibrant crimson for urgency */
+
+	spacing: 0;
+	background-color: transparent;
+}
+
+window {
+	transparency: "real";
+	background-color: #1a0000CC; /* 80% opacity deep blood red */
+}
+
+mainbox {
+	children: [inputbar, message, mode-switcher, listview];
+	spacing: 30px;
+	padding: 30px 0;
+	border: 1px;
+	border-color: @base0D;
+}
+
+inputbar {
+	padding: 0 30px;
+	children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+	text-color: @base0D;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base0D;
+}
+
+entry {
+	text-color: @base07;
+}
+
+case-indicator {
+	text-color: @base0F;
+}
+
+mode-switcher, message {
+	border: 1px 0;
+	border-color: @base0D;
+}
+
+button, textbox {
+	background-color: @base03;
+	text-color: @base07;
+	padding: 5px;
+}
+
+button selected {
+	background-color: @base0D;
+}
+
+listview {
+	scrollbar: true;
+	margin: 0 10px 0 30px;
+}
+
+scrollbar {
+	background-color: @base03;
+	handle-color: @base0D;
+	handle-width: 10px;
+	border: 0 1px;
+	border-color: @base0D;
+	margin: 0 0 0 20px;
+}
+
+element {
+	padding: 5px;
+	spacing: 5px;
+	highlight: bold underline;
+	children: [element-icon, element-text];
+}
+element-text, element-icon {
+	background-color : inherit;
+	text-color	     : inherit;
+	foreground-color : inherit;
+}
+
+element normal {
+	background-color: transparent;
+}
+
+element selected {
+	background-color: @base0D;
+}
+
+element alternate {
+	/* You can uncomment for alternating deep tone rows */
+	/* background-color: @base03; */
+}
+
+element normal normal, element selected normal, element alternate normal {
+	text-color: @base07;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+	text-color: @base0F;
+}
+
+element normal active, element selected active, element alternate active {
+	text-color: @base0B;
+}
+

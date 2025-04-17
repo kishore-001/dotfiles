@@ -1,0 +1,147 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", sans-serif;
+    font-size: 12px; /* Smaller font size */
+    font-weight: bold;
+    min-height: 0;
+}
+
+/* Waybar Background */
+window#waybar {
+    background: rgba(30, 43, 51, 0.85); /* Dark Teal with transparency */
+    border: 2px solid #89DCEB; /* Cyan border */
+    color: #F8F8F2; /* Soft white text */
+    padding: 3px;
+    border-radius: 8px;
+    margin: 2px;
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Workspaces */
+#workspaces button {
+    background: transparent;
+    color: #A3C7D8;
+    padding: 3px 6px;
+    margin: 1px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+    background: #89DCEB;
+    color: #1E2B33;
+}
+
+/* Modules (Clock, Battery, Network, CPU, RAM, GPU, Fan) */
+#clock, 
+#battery, 
+#network, 
+#tray, 
+#pulseaudio, 
+#bluetooth, 
+#custom-cpu, 
+#ram, 
+#memory,
+#custom-gpu, 
+#custom-fan,
+#custom-ip {
+    padding: 3px 8px;
+    margin: 3px;
+    background: rgba(42, 59, 67, 0.8);
+    border-radius: 6px;
+}
+
+/* Hover Effects */
+#workspaces button:hover,
+#clock:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#memory:hover,
+#custom-cpu:hover,
+#ram:hover,
+#custom-gpu:hover,
+#custom-fan:hover,
+#custom-ip:hover {
+    background: #F9A875;
+    color: #1E2B33;
+}
+
+/* Battery Module */
+#battery {
+    color: #A6E3A1;
+}
+
+#battery.charging {
+    color: #89DCEB;
+}
+#battery.warning {
+    color: #F9E2AF;
+}
+
+#battery.critical {
+    color: #F38BA8;
+}
+
+/* Network */
+#network {
+    color: #89DCEB;
+}
+
+#network.disconnected {
+    color: #F38BA8;
+}
+
+/* Sound (Pulseaudio) */
+#pulseaudio {
+    color: #89DCEB;
+}
+
+#pulseaudio.muted {
+    color: #F38BA8;
+}
+
+/* Bluetooth */
+#bluetooth {
+    color: #A3C7D8;
+}
+
+/* CPU Usage */
+#custom-cpu {
+    color: #F9E2AF;
+}
+
+/* RAM Usage */
+#memory {
+    color: #A6E3A1;
+}
+
+/* GPU Usage */
+#custom-gpu {
+    color: #89B4FA;
+}
+
+/* Fan Speed */
+#custom-fan {
+    color: #FAB387;
+}
+
+#custom-ip {
+    color: #A000FC;
+}
+
+/* Tray */
+#tray {
+    background: rgba(42, 59, 67, 0.8);
+}
+
+/* Smooth Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

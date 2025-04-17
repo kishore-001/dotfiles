@@ -1,4 +1,4 @@
-* {
+{
   font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", sans-serif;
   font-size: 12px;
   font-weight: bold;
@@ -8,8 +8,8 @@
 /* Waybar Background */
 window#waybar {
   background: rgba(40, 0, 0, 0.85); /* Dark blood-red with transparency */
-  border: 2px solid #8b0000; /* Dark red border */
-  color: #ffeeee; /* Pale blood-like text */
+  border: 2px solid #8B0000; /* Dark red border */
+  color: #FFEEEE; /* Pale blood-like text */
   padding: 3px;
   border-radius: 8px;
   margin: 2px;
@@ -20,7 +20,7 @@ window#waybar {
 /* Workspaces */
 #workspaces button {
   background: transparent;
-  color: #d46a6a; /* Muted red */
+  color: #D46A6A; /* Muted red */
   padding: 3px 6px;
   margin: 1px;
   border-radius: 6px;
@@ -28,8 +28,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background: #b22222; /* Firebrick red */
-  color: #ffeeee; /* Light blood tint */
+  background: #B22222; /* Firebrick red */
+  color: #FFEEEE; /* Light blood tint */
 }
 
 /* Modules */
@@ -49,7 +49,7 @@ window#waybar {
   margin: 3px;
   background: rgba(80, 0, 0, 0.8); /* Deep blood overlay */
   border-radius: 6px;
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* Hover Effects */
@@ -64,64 +64,64 @@ window#waybar {
 #custom-gpu:hover,
 #custom-fan:hover,
 #custom-ip:hover {
-  background: #8b0000; /* Dark blood-red */
-  color: #ffeeee;
+  background: #8B0000; /* Dark blood-red */
+  color: #FFEEEE;
 }
 
 /* Battery Module */
 #battery {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 #battery.charging,
 #battery.warning,
 #battery.critical {
-  color: #ffa07a; /* Light salmon for alerting */
+  color: #FFA07A; /* Light salmon for alerting */
 }
 
 /* Network */
 #network {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 #network.disconnected {
-  color: #ff6347; /* Tomato red for disconnected */
+  color: #FF6347; /* Tomato red for disconnected */
 }
 
 /* Sound (Pulseaudio) */
 #pulseaudio {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 #pulseaudio.muted {
-  color: #d46a6a; /* Muted red for muted */
+  color: #D46A6A; /* Muted red for muted */
 }
 
 /* Bluetooth */
 #bluetooth {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* CPU Usage */
 #custom-cpu {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* RAM Usage */
 #memory {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* GPU Usage */
 #custom-gpu {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* Fan Speed */
 #custom-fan {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* IP */
 #custom-ip {
-  color: #ffeeee;
+  color: #FFEEEE;
 }
 
 /* Tray */
@@ -138,3 +138,4 @@ window#waybar {
     opacity: 1;
   }
 }
+
