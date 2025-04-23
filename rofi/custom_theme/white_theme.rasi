@@ -1,0 +1,128 @@
+* {
+    base00: #ffffff; /* Pure white background */
+    base01: #f5f5f5; /* Slightly off-white */
+    base02: #eaeaea; /* Light gray for subtle elements */
+    base03: #cccccc; /* Mid-gray for borders */
+    base04: #555555; /* Medium-dark text */
+    base05: #333333; /* Default text */
+    base06: #333333;
+    base07: #000000; /* Black for strong contrast text */
+    base08: #cc0000; /* Deep red for highlights */
+    base09: #ff3300; /* Alert/warning orange-red */
+    base0A: #ff9900; /* Orange for highlights */
+    base0B: #339933; /* Soft green for success-like elements */
+    base0C: #6666cc; /* Blue-ish tone for variety */
+    base0D: #0066cc; /* Main blue highlight */
+    base0E: #6600cc; /* Secondary purple-ish highlight */
+    base0F: #ff0000; /* Urgent crimson */
+
+    spacing: 0;
+    background-color: transparent;
+}
+
+window {
+    transparency: "real";
+    background-color: #ffffffCC; /* 80% opacity white */
+}
+
+mainbox {
+    children: [inputbar, message, mode-switcher, listview];
+    spacing: 30px;
+    padding: 30px 0;
+    border: 1px;
+    border-color: @base03;
+}
+
+inputbar {
+    padding: 0 30px;
+    children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+    text-color: @base0D;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0 1ch 0 0;
+    text-color: @base0D;
+}
+
+entry {
+    text-color: @base07;
+}
+
+case-indicator {
+    text-color: @base0F;
+}
+
+mode-switcher, message {
+    border: 1px 0;
+    border-color: @base03;
+}
+
+button, textbox {
+    background-color: @base01;
+    text-color: @base05;
+    padding: 5px;
+}
+
+button selected {
+    background-color: @base0D;
+    text-color: #ffffff;
+}
+
+listview {
+    scrollbar: true;
+    margin: 0 10px 0 30px;
+}
+
+scrollbar {
+    background-color: @base02;
+    handle-color: @base0D;
+    handle-width: 10px;
+    border: 0 1px;
+    border-color: @base03;
+    margin: 0 0 0 20px;
+}
+
+element {
+    padding: 5px;
+    spacing: 5px;
+    highlight: bold underline;
+    children: [element-icon, element-text];
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    foreground-color: inherit;
+}
+
+element normal {
+    background-color: transparent;
+}
+
+element selected {
+    background-color: @base0D;
+    text-color: #ffffff;
+}
+
+element alternate {
+    /* You can uncomment for alternating light tone rows */
+    /* background-color: @base02; */
+}
+
+element normal normal, element selected normal, element alternate normal {
+    text-color: @base05;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+    text-color: @base0F;
+}
+
+element normal active, element selected active, element alternate active {
+    text-color: @base0B;
+}
+
