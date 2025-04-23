@@ -29,7 +29,7 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/sbin
 eval "$(starship init bash)"
-export EDITOR='nvim'
+export EDITOR=nvim
 export ANDROID_HOME=$HOME/Android/Sdk.
 export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
 

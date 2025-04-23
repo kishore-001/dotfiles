@@ -7,9 +7,9 @@
 
 /* Waybar Background */
 window#waybar {
-  background: rgba(0, 0, 0, 0.85); /* Dark black with transparency */
-  border: 2px solid #ffffff; /* White border */
-  color: #ffffff; /* White text */
+  background: rgba(40, 0, 0, 0.85); /* Dark blood-red with transparency */
+  border: 2px solid #8b0000; /* Dark red border */
+  color: #ffeeee; /* Pale blood-like text */
   padding: 3px;
   border-radius: 8px;
   margin: 2px;
@@ -20,7 +20,7 @@ window#waybar {
 /* Workspaces */
 #workspaces button {
   background: transparent;
-  color: #cccccc; /* Light gray */
+  color: #d46a6a; /* Muted red */
   padding: 3px 6px;
   margin: 1px;
   border-radius: 6px;
@@ -28,8 +28,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background: #ffffff;
-  color: #000000; /* Black text on white */
+  background: #b22222; /* Firebrick red */
+  color: #ffeeee; /* Light blood tint */
 }
 
 /* Modules */
@@ -47,9 +47,9 @@ window#waybar {
 #custom-ip {
   padding: 3px 8px;
   margin: 3px;
-  background: rgba(20, 20, 20, 0.8); /* Almost black */
+  background: rgba(80, 0, 0, 0.8); /* Deep blood overlay */
   border-radius: 6px;
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* Hover Effects */
@@ -64,69 +64,69 @@ window#waybar {
 #custom-gpu:hover,
 #custom-fan:hover,
 #custom-ip:hover {
-  background: #ffffff;
-  color: #000000;
+  background: #8b0000; /* Dark blood-red */
+  color: #ffeeee;
 }
 
 /* Battery Module */
 #battery {
-  color: #ffffff;
+  color: #ffeeee;
 }
 #battery.charging,
 #battery.warning,
 #battery.critical {
-  color: #ffffff;
+  color: #ffa07a; /* Light salmon for alerting */
 }
 
 /* Network */
 #network {
-  color: #ffffff;
+  color: #ffeeee;
 }
 #network.disconnected {
-  color: #ffffff;
+  color: #ff6347; /* Tomato red for disconnected */
 }
 
 /* Sound (Pulseaudio) */
 #pulseaudio {
-  color: #ffffff;
+  color: #ffeeee;
 }
 #pulseaudio.muted {
-  color: #aaaaaa;
+  color: #d46a6a; /* Muted red for muted */
 }
 
 /* Bluetooth */
 #bluetooth {
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* CPU Usage */
 #custom-cpu {
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* RAM Usage */
 #memory {
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* GPU Usage */
 #custom-gpu {
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* Fan Speed */
 #custom-fan {
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* IP */
 #custom-ip {
-  color: #ffffff;
+  color: #ffeeee;
 }
 
 /* Tray */
 #tray {
-  background: rgba(20, 20, 20, 0.8);
+  background: rgba(80, 0, 0, 0.8); /* Deep blood background */
 }
 
 /* Smooth Fade-in Animation */
