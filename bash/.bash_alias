@@ -16,6 +16,7 @@ alias v="nvim"
 alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
 alias tm="btop"
 alias fm="yazi"
+alias gm="nvtop"
 
 # ------ network -------
 
@@ -31,8 +32,7 @@ alias won="nmcli radio wifi on"
 alias iruka="ping 8.8.8.8"
 alias st="speedtest-cli"
 alias thm="sudo openvpn ~/Downloads/vpn/tryhackme/shadow.exe.ovpn"
-alias spt="spotify_player"
-alias ll="lsd -l"
+alias ll="lsd -al"
 alias ls="lsd"
 alias c="wl-copy"
 
@@ -47,3 +47,13 @@ alias ef="nvim ~/.bash_functions"
 # ------ source ------
 
 alias sb="source ~/.bashrc"
+
+# ------ temp -------
+
+alias gen="sqlc generate"
+alias db="go run ./temp/dbinit.go"
+alias rundb="psql -U admin -d snsmsdb -p 8500"
+alias f="cd ~/ServerManagementSuite/frontend;npm run dev -- --host"
+alias b="cd ~/ServerManagementSuite/backend;go run main.go"
+alias c="cd ~/ServerManagementSuite/client/linux;sudo go run main.go"
+alias h="sudo wihotspot-gui"

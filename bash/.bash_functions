@@ -62,7 +62,7 @@ cenv() {
   fi
 
   # Create a new virtual environment
-  python3 -m venv "$ENV_DIR/$NEW_ENV"
+  python -m venv "$ENV_DIR/$NEW_ENV"
   echo "Created new environment: $NEW_ENV"
 }
 
@@ -119,5 +119,25 @@ pm() {
     echo "Switched to: $SELECTED_MODE"
   else
     echo "No mode selected."
+  fi
+}
+
+# GITHUB copilot
+
+# Function to explain a command using GitHub Copilot
+ce() {
+  if [ -z "$1" ]; then
+    echo "Usage: copilot_explain <command>"
+  else
+    gh copilot explain "$*"
+  fi
+}
+
+# Function to get code suggestions using GitHub Copilot
+cs() {
+  if [ -z "$1" ]; then
+    echo "Usage: copilot_suggest <prompt>"
+  else
+    gh copilot suggest "$*"
   fi
 }

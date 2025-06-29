@@ -32,6 +32,8 @@ eval "$(starship init bash)"
 export EDITOR=nvim
 export ANDROID_HOME=$HOME/Android/Sdk.
 export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH
+eval "$(pyenv init --path)"
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # ------------------------------ finish -------------------------------------#
 
