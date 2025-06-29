@@ -48,6 +48,13 @@ alias ef="nvim ~/.bash_functions"
 
 alias sb="source ~/.bashrc"
 
+# ------ github ------
+
+alias ga="git add ."
+alias gc="git commit -m"
+alias gpu="git push"
+alias gpl="git pull"
+
 # ------ temp -------
 
 alias gen="sqlc generate"
