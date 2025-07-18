@@ -1,82 +1,97 @@
 {
-    "layer": "top",
-    "position": "top",
-    "modules-left": ["custom/cpu", "memory", "custom/gpu", "custom/fan","custom/ip"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "battery", "network", "bluetooth"],
-
-    "clock": {
-        "format": "{:%b %d | %I:%M %p}",
-        "tooltip-format": "{:%A, %B %d, %Y - %I:%M:%S %p}"
-    },
-
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ⚡",
-        "format-full": "{capacity}%  Full",
-        "format-icons": ["", "", "", "", ""]
-    },
-
-    "network": {
-    "format-wifi": "  {essid} ({signalStrength}%)",
-    "format-ethernet": "󰈀  Connected",
-    "format-disconnected": "󰖪 Disconnected",
-    },
- 
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "🔇 Muted",
-        "format-icons": {
-            "headphone": "🎧",
-            "handsfree": "🎤",
-            "headset": "🎧",
-            "phone": "📱",
-            "portable": "📻",
-            "car": "🚗",
-            "default": ["🔈", "🔉", "🔊"]
-        }
-    },
-
-    "bluetooth": {
-        "format": " {status}",
-        "format-connected": " {device_alias}",
-        "format-disabled": "󰂲 Off",
-        "tooltip-format": "{device_alias} ({device_address})",
-        "max-length": 20
-    },
-
-    "custom/cpu": {
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["custom/cpu", "memory", "custom/gpu", "custom/fan", "custom/ip"],
+  "modules-center": ["clock"],
+  "modules-right": ["custom/vpn", "custom/updates", "custom/disk", "custom/public_ip", "pulseaudio", "battery", "network", "bluetooth"],
+  "clock": {
+    "format": "{:%b %d | %I:%M %p}",
+    "tooltip-format": "{:%A, %B %d, %Y - %I:%M:%S %p}"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-full": "{capacity}% 󰁹",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+  "network": {
+    "format-wifi": "󰖩 {essid} ({signalStrength}%)",
+    "format-ethernet": "󰈀 Connected",
+    "format-disconnected": "󰖪 Disconnected"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 Muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "handsfree": "󰋎",
+      "headset": "󰋋",
+      "phone": "󰏲",
+      "portable": "󰗅",
+      "car": "󰄋",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    }
+  },
+  "bluetooth": {
+    "format": "󰂯 {status}",
+    "format-connected": "󰂱 {device_alias}",
+    "format-disabled": "󰂲 Off",
+    "tooltip-format": "{device_alias} ({device_address})",
+    "max-length": 20
+  },
+  "custom/cpu": {
     "exec": "~/.config/waybar/scripts/cpu_usage.sh",
     "interval": 3,
     "tooltip": true,
     "id": "custom-cpu"
-    },
-
-
-    "memory": {
-        "format": "󰍛 {used}/{total} GB",
-    },
-
-    "custom/gpu": {
-        "exec": "~/.config/waybar/scripts/gpu_usage.sh",
-        "interval": 3,
-        "tooltip": true,
-	"id": "custom-gpu"
-    },
-
-    "custom/fan": {
-        "exec": "~/.config/waybar/scripts/fan_speed.sh",
-        "interval": 3,
-        "tooltip": true,
-	"id": "custom-fan"
-    },
-
-   "custom/ip": {
+  },
+  "memory": {
+    "format": "󰍛 {used}/{total} GB"
+  },
+  "custom/gpu": {
+    "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+    "interval": 3,
+    "tooltip": true,
+    "id": "custom-gpu"
+  },
+  "custom/fan": {
+    "exec": "~/.config/waybar/scripts/fan_speed.sh",
+    "interval": 3,
+    "tooltip": true,
+    "id": "custom-fan",
+    "on-click": "~/.config/waybar/scripts/pm_wrapper.sh"
+  },
+  "custom/ip": {
     "exec": "~/.config/waybar/scripts/ip_address.sh",
     "interval": 5,
     "tooltip": true,
-    "id": "custom-ip"
-} 
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/copy_ip.sh"
+  },
+  "custom/vpn": {
+    "exec": "~/.config/waybar/scripts/vpn_status.sh",
+    "interval": 5,
+    "tooltip": true,
+    "return-type": "json"
+  },
+  "custom/updates": {
+    "exec": "~/.config/waybar/scripts/updates.sh",
+    "interval": 600,
+    "tooltip": true,
+    "return-type": "json"
+  },
+  "custom/disk": {
+    "exec": "~/.config/waybar/scripts/disk_usage.sh",
+    "interval": 30,
+    "tooltip": true,
+    "return-type": "json",
+    "format": "󰋊 {}"
+  },
+  "custom/public_ip": {
+    "exec": "~/.config/waybar/scripts/public_ip.sh",
+    "interval": 300,
+    "tooltip": true,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/copy_public_ip.sh"
+  }
 }
-

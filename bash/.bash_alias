@@ -17,6 +17,7 @@ alias ff="fastfetch --kitty-direct ~/.config/fastfetch/eren.png"
 alias tm="btop"
 alias fm="yazi"
 alias gm="nvtop"
+alias da="sudo ncdu /"
 
 # ------ network -------
 
@@ -55,12 +56,36 @@ alias gc="git commit -m"
 alias gpu="git push"
 alias gpl="git pull"
 
-# ------ temp -------
+# ------ docker -------
 
-alias gen="sqlc generate"
-alias db="go run ./temp/dbinit.go"
-alias rundb="psql -U admin -d snsmsdb -p 8500"
-alias f="cd ~/ServerManagementSuite/frontend;npm run dev -- --host"
-alias b="cd ~/ServerManagementSuite/backend;go run main.go"
-alias c="cd ~/ServerManagementSuite/client/linux;sudo go run main.go"
-alias h="sudo wihotspot-gui"
+alias dockernuke='docker rm -f $(docker ps -aq) 2>/dev/null; docker rmi -f $(docker images -aq) 2>/dev/null; docker volume rm $(docker volume ls -q) 2>/dev/null; docker network rm $(docker network ls -q | grep -v "bridge\|host\|none") 2>/dev/null'
+
+# Basic
+
+alias dps='docker ps -a'
+alias dim='docker images'
+alias dvol='docker volume ls'
+alias dnet='docker network ls'
+
+# Cleanup
+
+alias dclean='docker system prune -af --volumes'
+
+# Containers
+
+alias dstop='docker stop $(docker ps -q)'
+alias drm='docker rm $(docker ps -aq)'
+
+# Images
+
+alias drmi='docker rmi $(docker images -q)'
+
+# Volumes & Networks
+
+alias dvolrm='docker volume rm $(docker volume ls -q)'
+alias dnetrm='docker network rm $(docker network ls -q | grep -v "bridge\|host\|none")'
+
+# Quick Build & Run
+
+alias dbuild='docker build -t'
+alias drun='docker run --rm -it'

@@ -141,3 +141,115 @@ cs() {
     gh copilot suggest "$*"
   fi
 }
+
+# Add image function
+
+addimage() {
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: addimage <AppImage path>"
+    return 1
+  fi
+
+  APPIMAGE_PATH="$(realpath "$1")"
+  [[ ! -f "$APPIMAGE_PATH" ]] && echo "❌ File does not exist: $APPIMAGE_PATH" && return 1
+
+  APPIMAGE_NAME="$(basename "$APPIMAGE_PATH")"
+  FOLDER_NAME="${APPIMAGE_NAME%.AppImage}"
+  INSTALL_DIR="$HOME/appimage/$FOLDER_NAME"
+  DESKTOP_DIR="$HOME/.local/share/applications"
+  mkdir -p "$INSTALL_DIR" "$DESKTOP_DIR"
+
+  # Prompt for display name
+  read -p "📝 Enter a name for the desktop entry: " CUSTOM_NAME
+  [[ -z "$CUSTOM_NAME" ]] && echo "❌ Name cannot be empty." && return 1
+
+  # Prompt for optional custom icon path
+  read -p "🎨 Enter full path to icon file (.png/.svg/.jpg) [Leave blank to auto-extract]: " CUSTOM_ICON_PATH
+
+  # Define paths
+  APPIMAGE_DEST="$INSTALL_DIR/$APPIMAGE_NAME"
+  DESKTOP_FILE="$DESKTOP_DIR/${CUSTOM_NAME// /_}.desktop"
+  ICON_DEST="$INSTALL_DIR/icon.png"
+
+  echo "📦 Installing $APPIMAGE_NAME to $INSTALL_DIR..."
+  mv "$APPIMAGE_PATH" "$APPIMAGE_DEST" || {
+    echo "❌ Failed to move AppImage."
+    return 1
+  }
+  chmod +x "$APPIMAGE_DEST"
+
+  # Handle icon
+  if [[ -n "$CUSTOM_ICON_PATH" && -f "$CUSTOM_ICON_PATH" ]]; then
+    cp "$CUSTOM_ICON_PATH" "$ICON_DEST"
+    ICON_LINE="Icon=$ICON_DEST"
+    echo "✅ Using custom icon."
+  else
+    echo "🔍 Attempting to extract icon from AppImage..."
+    cd "$INSTALL_DIR"
+    "$APPIMAGE_DEST" --appimage-extract &>/dev/null
+
+    FOUND_ICON=$(find squashfs-root -type f \( -iname '*.png' -o -iname '*.svg' -o -iname '*.jpg' \) | grep -i icon | head -n 1)
+
+    if [[ -n "$FOUND_ICON" && -f "$FOUND_ICON" ]]; then
+      cp "$FOUND_ICON" "$ICON_DEST"
+      ICON_LINE="Icon=$ICON_DEST"
+      echo "✅ Extracted icon: $(basename "$FOUND_ICON")"
+    else
+      ICON_LINE="Icon=application-default-icon"
+      echo "⚠️ No icon found in AppImage. Using system default."
+    fi
+
+    rm -rf squashfs-root
+  fi
+
+  # Create .desktop entry
+  echo "🧩 Creating desktop entry..."
+  cat >"$DESKTOP_FILE" <<EOF
+[Desktop Entry]
+Type=Application
+Name=$CUSTOM_NAME
+Exec=$APPIMAGE_DEST
+$ICON_LINE
+Comment=Installed via addimage
+Terminal=false
+Categories=Utility;
+EOF
+
+  chmod +x "$DESKTOP_FILE"
+  echo "✅ '$CUSTOM_NAME' successfully added to your application launcher."
+}
+
+removeimage() {
+  DESKTOP_DIR="$HOME/.local/share/applications"
+  APP_DIR="$HOME/appimage"
+
+  # List .desktop files added via addimage
+  ENTRIES=$(grep -l "Installed via addimage" "$DESKTOP_DIR"/*.desktop 2>/dev/null | xargs -n1 basename | sed 's/\.desktop$//')
+
+  if [[ -z "$ENTRIES" ]]; then
+    echo "❌ No apps installed via addimage found."
+    return 1
+  fi
+
+  # Let user select which one to remove
+  SELECTED=$(echo "$ENTRIES" | rofi -dmenu -p "Select app to remove:" -lines 5 -width 30)
+
+  [[ -z "$SELECTED" ]] && echo "❌ No selection made. Aborted." && return 1
+
+  DESKTOP_FILE="$DESKTOP_DIR/$SELECTED.desktop"
+  FOLDER_NAME=$(awk -F '=' '/Exec=/{print $2}' "$DESKTOP_FILE" | xargs dirname)
+
+  echo "🧹 Preparing to remove:"
+  echo "  ❯ Folder: $FOLDER_NAME"
+  echo "  ❯ Entry:  $DESKTOP_FILE"
+
+  # Confirm
+  CONFIRM=$(echo -e "Yes\nNo" | rofi -dmenu -p "Delete $SELECTED?")
+  [[ "$CONFIRM" != "Yes" ]] && echo "🛑 Cancelled." && return 1
+
+  # Remove both
+  rm -rf "$FOLDER_NAME" && echo "✅ Removed: $FOLDER_NAME"
+  rm -f "$DESKTOP_FILE" && echo "✅ Removed: $DESKTOP_FILE"
+
+  echo "✅ '$SELECTED' successfully uninstalled."
+}
