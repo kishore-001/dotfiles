@@ -1,23 +1,87 @@
+
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["custom/cpu", "memory", "custom/gpu", "custom/fan", "custom/ip"],
+
+  "modules-left": [
+    "custom/cpu", "memory", "custom/gpu", "custom/fan", "custom/ip"
+  ],
   "modules-center": ["clock"],
-  "modules-right": ["custom/vpn", "custom/updates", "custom/disk", "custom/public_ip", "pulseaudio", "battery", "network", "bluetooth"],
-  "clock": {
-    "format": "{:%b %d | %I:%M %p}",
-    "tooltip-format": "{:%A, %B %d, %Y - %I:%M:%S %p}"
+  "modules-right": [
+    "custom/vpn", "custom/updates", "custom/disk", "custom/public_ip",
+    "pulseaudio", "battery", "network", "bluetooth"
+  ],
+
+  // Shared separator settings
+  "custom/cpu": {
+    "exec": "~/.config/waybar/scripts/cpu_usage.sh",
+    "interval": 3,
+    "tooltip": true,
+    "separator": true,
+    "separator-block-width": 15
   },
-  "battery": {
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󰂄",
-    "format-full": "{capacity}% 󰁹",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  "memory": {
+    "format": "󰍛 {used}/{total} GB",
+    "separator": true,
+    "separator-block-width": 15
   },
-  "network": {
-    "format-wifi": "󰖩 {essid} ({signalStrength}%)",
-    "format-ethernet": "󰈀 Connected",
-    "format-disconnected": "󰖪 Disconnected"
+  "custom/gpu": {
+    "exec": "~/.config/waybar/scripts/gpu_usage.sh",
+    "interval": 3,
+    "tooltip": true,
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "custom/fan": {
+    "exec": "~/.config/waybar/scripts/fan_speed.sh",
+    "interval": 3,
+    "tooltip": true,
+    "on-click": "~/.config/waybar/scripts/pm_wrapper.sh",
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "custom/ip": {
+    "exec": "~/.config/waybar/scripts/ip_address.sh",
+    "interval": 5,
+    "tooltip": true,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/copy_ip.sh",
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "custom/vpn": {
+    "exec": "~/.config/waybar/scripts/vpn_status.sh",
+    "interval": 5,
+    "tooltip": true,
+    "return-type": "json",
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "custom/updates": {
+    "exec": "~/.config/waybar/scripts/updates.sh",
+    "interval": 600,
+    "tooltip": true,
+    "return-type": "json",
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "custom/disk": {
+    "exec": "~/.config/waybar/scripts/disk_usage.sh",
+    "interval": 30,
+    "tooltip": true,
+    "return-type": "json",
+    "format": "󰋊 {}",
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "custom/public_ip": {
+    "exec": "~/.config/waybar/scripts/public_ip.sh",
+    "interval": 30,
+    "tooltip": true,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/copy_public_ip.sh",
+    "separator": true,
+    "separator-block-width": 15
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -30,68 +94,36 @@
       "portable": "󰗅",
       "car": "󰄋",
       "default": ["󰕿", "󰖀", "󰕾"]
-    }
+    },
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-full": "{capacity}% 󰁹",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "separator": true,
+    "separator-block-width": 15
+  },
+  "network": {
+    "format-wifi": "󰖩 {essid} ({signalStrength}%)",
+    "format-ethernet": "󰈀 Connected",
+    "format-disconnected": "󰖪 Disconnected",
+    "separator": true,
+    "separator-block-width": 15
   },
   "bluetooth": {
     "format": "󰂯 {status}",
     "format-connected": "󰂱 {device_alias}",
     "format-disabled": "󰂲 Off",
     "tooltip-format": "{device_alias} ({device_address})",
-    "max-length": 20
+    "max-length": 20,
+    "separator": true,
+    "separator-block-width": 15
   },
-  "custom/cpu": {
-    "exec": "~/.config/waybar/scripts/cpu_usage.sh",
-    "interval": 3,
-    "tooltip": true,
-    "id": "custom-cpu"
-  },
-  "memory": {
-    "format": "󰍛 {used}/{total} GB"
-  },
-  "custom/gpu": {
-    "exec": "~/.config/waybar/scripts/gpu_usage.sh",
-    "interval": 3,
-    "tooltip": true,
-    "id": "custom-gpu"
-  },
-  "custom/fan": {
-    "exec": "~/.config/waybar/scripts/fan_speed.sh",
-    "interval": 3,
-    "tooltip": true,
-    "id": "custom-fan",
-    "on-click": "~/.config/waybar/scripts/pm_wrapper.sh"
-  },
-  "custom/ip": {
-    "exec": "~/.config/waybar/scripts/ip_address.sh",
-    "interval": 5,
-    "tooltip": true,
-    "return-type": "json",
-    "on-click": "~/.config/waybar/scripts/copy_ip.sh"
-  },
-  "custom/vpn": {
-    "exec": "~/.config/waybar/scripts/vpn_status.sh",
-    "interval": 5,
-    "tooltip": true,
-    "return-type": "json"
-  },
-  "custom/updates": {
-    "exec": "~/.config/waybar/scripts/updates.sh",
-    "interval": 600,
-    "tooltip": true,
-    "return-type": "json"
-  },
-  "custom/disk": {
-    "exec": "~/.config/waybar/scripts/disk_usage.sh",
-    "interval": 30,
-    "tooltip": true,
-    "return-type": "json",
-    "format": "󰋊 {}"
-  },
-  "custom/public_ip": {
-    "exec": "~/.config/waybar/scripts/public_ip.sh",
-    "interval": 300,
-    "tooltip": true,
-    "return-type": "json",
-    "on-click": "~/.config/waybar/scripts/copy_public_ip.sh"
+  "clock": {
+    "format": "{:%b %d | %I:%M %p}",
+    "tooltip-format": "{:%A, %B %d, %Y - %I:%M:%S %p}"
   }
 }

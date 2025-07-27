@@ -1,0 +1,59 @@
+user: 208 # Orange for usernames
+group: 130 # Dark orange/brownish for group names
+
+permission:
+  read: 202 # Fiery red-orange
+  write: 214 # Goldish orange
+  exec: 208 # Bright orange for exec
+  exec-sticky: 202
+  no-access: 238
+  octal: 244
+  acl: 39
+  context: 130
+
+date:
+  hour-old: 208 # Orange for recent
+  day-old: 202 # Reddish for yesterday
+  older: 240 # Grey for old
+
+size:
+  none: 245
+  small: 144
+  medium: 208
+  large: 202
+
+inode:
+  valid: 208
+  invalid: 238
+
+links:
+  valid: 208
+  invalid: 244
+
+tree-edge: 240
+
+filetypes:
+  directory: 208 # Directories in bright orange
+  symlink: 214 # Symlinks in golden-orange
+  executable: 202 # Executables in red-orange
+  image: 209 # Slightly pink-orange
+  video: 167
+  audio: 172
+  archive: 130
+  document: 173
+  code: 215
+  config: 137
+  temp: 245
+  hidden: 238
+
+git-status:
+  default: 244
+  unmodified: 244
+  ignored: 238
+  new-in-index: 130
+  new-in-workdir: 130
+  typechange: 202
+  deleted: 160
+  renamed: 208
+  modified: 214
+  conflicted: 160

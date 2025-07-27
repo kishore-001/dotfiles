@@ -24,6 +24,7 @@ export EDITOR=nvim
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$HOME/.wasmtime/bin:$PATH"
 
 # NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
@@ -39,3 +40,7 @@ eval "$(starship init bash)"
 # ------------------------------ END -------------------------------------#
 
 ff
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"

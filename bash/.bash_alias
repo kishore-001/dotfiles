@@ -35,6 +35,7 @@ alias st="speedtest-cli"
 alias thm="sudo openvpn ~/Downloads/vpn/tryhackme/shadow.exe.ovpn"
 alias ll="lsd -al"
 alias ls="lsd"
+alias lt="lsd --tree"
 alias c="wl-copy"
 
 # ------ bash -------

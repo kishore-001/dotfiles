@@ -1,0 +1,54 @@
+# ~/.config/lsd/config.yaml
+
+classic: false
+
+blocks:
+  - permission
+  - user
+  - group
+  - size
+  - date
+  - name
+
+color:
+  when: always
+  theme: custom
+
+date: "+%d %b %y %H:%M"
+
+dereference: false
+
+icons:
+  when: always
+  theme: fancy
+  separator: " "
+
+indicators: false
+
+layout: grid
+
+recursion:
+  enabled: false
+
+size: default
+
+sorting:
+  column: name
+  reverse: false
+  dir-grouping: first
+
+no-symlink: false
+
+total-size: false
+
+hyperlink: never
+
+symlink-arrow: ⇒
+
+header: false
+
+literal: false
+
+truncate-owner:
+  after: 12
+  marker: "…"
