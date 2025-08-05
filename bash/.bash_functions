@@ -172,7 +172,7 @@ addimage() {
   ICON_DEST="$INSTALL_DIR/icon.png"
 
   echo "📦 Installing $APPIMAGE_NAME to $INSTALL_DIR..."
-  mv "$APPIMAGE_PATH" "$APPIMAGE_DEST" || {
+  cp "$APPIMAGE_PATH" "$APPIMAGE_DEST" || {
     echo "❌ Failed to move AppImage."
     return 1
   }

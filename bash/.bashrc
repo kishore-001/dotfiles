@@ -37,6 +37,8 @@ eval "$(pyenv init -)"
 # Starship prompt
 eval "$(starship init bash)"
 
+eval "$(zoxide init bash)"
+
 # ------------------------------ END -------------------------------------#
 
 ff

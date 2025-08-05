@@ -29,9 +29,11 @@
     "exec": "~/.config/waybar/scripts/gpu_usage.sh",
     "interval": 3,
     "tooltip": true,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/gpu_switcher.sh",
     "separator": true,
     "separator-block-width": 15
-  },
+},
   "custom/fan": {
     "exec": "~/.config/waybar/scripts/fan_speed.sh",
     "interval": 3,
@@ -54,6 +56,7 @@
     "interval": 5,
     "tooltip": true,
     "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/vpn_status.sh click",
     "separator": true,
     "separator-block-width": 15
   },

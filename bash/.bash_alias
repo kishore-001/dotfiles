@@ -4,8 +4,10 @@
 
 # ------ directory --------
 
+alias cd='z'
 alias ..="cd ../.."
 alias .="cd .."
+alias f='z $(zoxide query -l | fzf)'
 
 # ------ application -------
 
@@ -37,6 +39,8 @@ alias ll="lsd -al"
 alias ls="lsd"
 alias lt="lsd --tree"
 alias c="wl-copy"
+alias rf="rfkill unblock all"
+alias rl="rfkill list"
 
 # ------ bash -------
 
@@ -56,6 +60,10 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gpu="git push"
 alias gpl="git pull"
+
+# ------ audio ------
+
+alias ac="alsamixer"
 
 # ------ docker -------
 
