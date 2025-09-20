@@ -65,6 +65,11 @@ alias gpl="git pull"
 
 alias ac="alsamixer"
 
+# ------ ssh ------
+
+alias pubkey='cat ~/.ssh/id_rsa.pub | wl-copy;echo "Copied the SSH Public key"'
+alias prvkey='cat ~/.ssh/id_rsa | wl-copy;echo "Copied the SSH Private key"'
+
 # ------ docker -------
 
 alias dockernuke='docker rm -f $(docker ps -aq) 2>/dev/null; docker rmi -f $(docker images -aq) 2>/dev/null; docker volume rm $(docker volume ls -q) 2>/dev/null; docker network rm $(docker network ls -q | grep -v "bridge\|host\|none") 2>/dev/null'

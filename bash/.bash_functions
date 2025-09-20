@@ -14,7 +14,7 @@ av() {
   fi
 
   # Get a list of environments
-  ENV_LIST=$(ls "$ENV_DIR")
+  ENV_LIST=$(find "$ENV_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort)
 
   if [[ -z "$ENV_LIST" ]]; then
     echo "No virtual environments found in $ENV_DIR"
@@ -75,7 +75,7 @@ denv() {
     return 1
   fi
 
-  ENV_LIST=$(ls "$ENV_DIR")
+  ENV_LIST=$(find "$ENV_DIR" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort)
   if [[ -z "$ENV_LIST" ]]; then
     echo "No virtual environments found in $ENV_DIR"
     return 1
@@ -252,4 +252,27 @@ removeimage() {
   rm -f "$DESKTOP_FILE" && echo "✅ Removed: $DESKTOP_FILE"
 
   echo "✅ '$SELECTED' successfully uninstalled."
+}
+
+# Add this to ~/.bashrc or source it in your shell
+serve() {
+  local dir=${1:-$(pwd)} # default to current directory if no arg
+  local port=${2:-2210}  # default port 2210 if not specified
+
+  if [ ! -d "$dir" ]; then
+    echo "[!] Directory '$dir' does not exist."
+    return 1
+  fi
+
+  echo "[*] Serving directory '$dir' on port $port ..."
+  cd "$dir" || return 1
+  # Start Python3 HTTP server
+  python3 -m http.server "$port"
+}
+
+h() {
+  history -a # make sure current session is saved
+  local cmd
+  cmd=$(history | tail -n 200 | tac | awk '{$1=""; print substr($0,2)}' | fzf --reverse --height 50%)
+  [ -n "$cmd" ] && eval "$cmd"
 }
