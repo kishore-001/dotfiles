@@ -1,0 +1,38 @@
+
+return {
+    {
+        "nvim-lua/plenary.nvim",
+        lazy = true,
+    },
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
+    },
+    {
+        "MunifTanjim/nui.nvim",
+        lazy = true,
+    },
+    {
+        "rafamadriz/friendly-snippets",
+        lazy = true,
+    },
+    {
+        "moyiz/blink-emoji.nvim",
+        lazy = true,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        lazy = true,
+    },
+    -- 🚀 LazyGit integration
+    {
+        "kdheepak/lazygit.nvim",
+        cmd = "LazyGit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" },
+        },
+    },
+}

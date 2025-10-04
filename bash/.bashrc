@@ -18,7 +18,10 @@ PS1='[\u@\h \W]\$ '
 
 # ------------------------- ENVIRONMENT --------------------------#
 
+
 export EDITOR=nvim
+export VISUAL=nvim
+
 
 # PATH Setup
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -44,5 +47,4 @@ eval "$(zoxide init bash)"
 ff
 
 export WASMTIME_HOME="$HOME/.wasmtime"
-
 export PATH="$WASMTIME_HOME/bin:$PATH"
