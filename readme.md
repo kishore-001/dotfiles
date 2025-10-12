@@ -22,8 +22,10 @@ Run the installation script to create symbolic links:
 ./install.sh
 ```
 
+Easy Installation Script
+```sudo pacman -S --needed \
+  pyenv starship zoxide firefox kitty mpv sxiv yazi fzf neovim rofi-wayland mako lsd fastfetch wl-clipboard lazygit
+```
 
 
 Feel free to fork and customize this setup to fit your workflow! 🚀
-
-

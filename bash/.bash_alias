@@ -60,7 +60,7 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gpu="git push"
 alias gpl="git pull"
-
+alias lg="lazygit"
 # ------ audio ------
 
 alias ac="alsamixer"
