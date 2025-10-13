@@ -122,25 +122,6 @@ pm() {
   fi
 }
 
-# GITHUB copilot
-
-# Function to explain a command using GitHub Copilot
-ce() {
-  if [ -z "$1" ]; then
-    echo "Usage: copilot_explain <command>"
-  else
-    gh copilot explain "$*"
-  fi
-}
-
-# Function to get code suggestions using GitHub Copilot
-cs() {
-  if [ -z "$1" ]; then
-    echo "Usage: copilot_suggest <prompt>"
-  else
-    gh copilot suggest "$*"
-  fi
-}
 
 # Add image function
 
@@ -275,4 +256,107 @@ h() {
   local cmd
   cmd=$(history | tail -n 200 | tac | awk '{$1=""; print substr($0,2)}' | fzf --reverse --height 50%)
   [ -n "$cmd" ] && eval "$cmd"
+}
+
+
+# TMUX MANAGER
+
+
+
+# Create or attach a session for the current directory
+tn() {
+    dir="$PWD"
+    session_name="$(basename "$(dirname "$dir")")-$(basename "$dir")"
+
+    if tmux has-session -t "$session_name" 2>/dev/null; then
+        echo "Session '$session_name' already exists. Attaching..."
+    else
+        tmux new-session -d -s "$session_name" -c "$dir"
+        echo "Created tmux session: $session_name in $dir"
+    fi
+
+    # If inside tmux, switch client; otherwise attach normally
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session_name"
+    else
+        tmux attach-session -t "$session_name"
+    fi
+}
+
+
+# Create or attach a session from a frequent zoxide directory
+tc() {
+    dir=$(zoxide query -l | fzf --prompt="Pick frequent directory: ")
+    [ -z "$dir" ] && echo "No directory selected." && return
+
+    session_name="$(basename "$(dirname "$dir")")-$(basename "$dir")"
+
+    if tmux has-session -t "$session_name" 2>/dev/null; then
+        echo "Session '$session_name' already exists. Attaching..."
+    else
+        tmux new-session -d -s "$session_name" -c "$dir"
+        echo "Created tmux session: $session_name in $dir"
+    fi
+
+    # If inside tmux, switch client; otherwise attach normally
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session_name"
+    else
+        tmux attach-session -t "$session_name"
+    fi
+}
+
+
+# Attach to an existing session (via fzf)
+a() {
+    session=$(tmux ls 2>/dev/null | fzf --prompt="Attach to session: ")
+    [ -z "$session" ] && return
+    session_name=$(echo "$session" | awk -F: '{print $1}')
+
+    # If inside tmux, switch client; otherwise attach normally
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session_name"
+    else
+        tmux attach-session -t "$session_name"
+    fi
+}
+
+d() {
+    tmux detach
+}
+
+
+
+tl() {
+    # If there are no sessions
+    if ! tmux has-session 2>/dev/null; then
+        echo -e "\033[38;5;111mNo active tmux sessions.\033[0m"
+        return
+    fi
+
+    # Color theme (dark blue aesthetic)
+    local BLUE="\033[38;5;110m"
+    local CYAN="\033[38;5;81m"
+    local GRAY="\033[38;5;240m"
+    local RESET="\033[0m"
+
+    echo -e "${GRAY}─────────────────────────────────────────────────${RESET}"
+
+    tmux list-sessions | while IFS= read -r line; do
+        # Example: home-k1sh0rx: 1 windows (created Mon Oct 13 17:57:26 2025)
+        local name windows date_raw formatted_time
+
+        name=$(echo "$line" | awk -F: '{print $1}')
+        windows=$(echo "$line" | grep -o '[0-9]\+ windows')
+        date_raw=$(echo "$line" | sed -E 's/.*\(created (.*)\)/\1/')
+
+        # Convert "Mon Oct 13 17:57:26 2025" → readable 12-hour format
+        formatted_time=$(date -d "$date_raw" +"%I:%M %p %b %d" 2>/dev/null || echo "$date_raw")
+
+        # Print aligned output
+        printf "${BLUE}%-18s${RESET} ${CYAN}%-12s${RESET} ${GRAY}%s${RESET}\n" \
+            "$name" "$windows" "$formatted_time"
+    done
+
+    echo -e "${GRAY}─────────────────────────────────────────────────${RESET}"
 }
