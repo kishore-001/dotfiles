@@ -8,6 +8,7 @@ alias cd='z'
 alias ..="cd ../.."
 alias .="cd .."
 alias f='z $(zoxide query -l | fzf)'
+alias tree="ls --tree"
 
 # ------ application -------
 

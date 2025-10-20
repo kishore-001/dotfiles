@@ -57,4 +57,6 @@ eval "$(github-copilot-cli alias -- bash)"
 
 # ------------------------------ END -------------------------------------#
 
+
 ff
+. "$HOME/.cargo/env"

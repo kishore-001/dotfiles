@@ -266,16 +266,23 @@ h() {
 # Create or attach a session for the current directory
 tn() {
     dir="$PWD"
-    session_name="$(basename "$(dirname "$dir")")-$(basename "$dir")"
 
-    if tmux has-session -t "$session_name" 2>/dev/null; then
-        echo "Session '$session_name' already exists. Attaching..."
-    else
-        tmux new-session -d -s "$session_name" -c "$dir"
-        echo "Created tmux session: $session_name in $dir"
-    fi
+    # Generate a safe base name (no dots, spaces, etc.)
+    base_name="$(basename "$(dirname "$dir")")-$(basename "$dir" | sed 's/[^a-zA-Z0-9_-]/_/g')"
+    session_name="$base_name"
 
-    # If inside tmux, switch client; otherwise attach normally
+    # Ensure the session name is unique (add _1, _2, etc.)
+    i=1
+    while tmux has-session -t "$session_name" 2>/dev/null; do
+        session_name="${base_name}_$i"
+        ((i++))
+    done
+
+    # Create a new detached session
+    tmux new-session -d -s "$session_name" -c "$dir"
+    echo "✅ Created tmux session: $session_name in $dir"
+
+    # Attach (or switch if already inside tmux)
     if [ -n "$TMUX" ]; then
         tmux switch-client -t "$session_name"
     else
@@ -286,19 +293,27 @@ tn() {
 
 # Create or attach a session from a frequent zoxide directory
 tc() {
-    dir=$(zoxide query -l | fzf --prompt="Pick frequent directory: ")
-    [ -z "$dir" ] && echo "No directory selected." && return
+    dir=$(zoxide query -l | fzf --prompt="📂 Pick frequent directory: ")
+    [ -z "$dir" ] && echo "❌ No directory selected." && return
 
-    session_name="$(basename "$(dirname "$dir")")-$(basename "$dir")"
+    # Clean and safe session name (no dots or slashes)
+    base_name="$(basename "$(dirname "$dir")")-$(basename "$dir")"
+    base_name="$(echo "$base_name" | sed 's/[^a-zA-Z0-9_-]/_/g')"
 
-    if tmux has-session -t "$session_name" 2>/dev/null; then
-        echo "Session '$session_name' already exists. Attaching..."
-    else
-        tmux new-session -d -s "$session_name" -c "$dir"
-        echo "Created tmux session: $session_name in $dir"
-    fi
+    session_name="$base_name"
 
-    # If inside tmux, switch client; otherwise attach normally
+    # Ensure uniqueness
+    i=1
+    while tmux has-session -t "$session_name" 2>/dev/null; do
+        session_name="${base_name}_$i"
+        ((i++))
+    done
+
+    # Create new session safely
+    tmux new-session -d -s "$session_name" -c "$dir"
+    echo "✅ Created tmux session: $session_name in $dir"
+
+    # Attach (or switch if inside tmux)
     if [ -n "$TMUX" ]; then
         tmux switch-client -t "$session_name"
     else
@@ -321,7 +336,7 @@ a() {
     fi
 }
 
-d() {
+xx() {
     tmux detach
 }
 
@@ -360,3 +375,49 @@ tl() {
 
     echo -e "${GRAY}─────────────────────────────────────────────────${RESET}"
 }
+
+
+
+cdd() {
+    # Define hidden dirs you want to include
+    INCLUDE_HIDDEN="^\.config$|^\.local$"
+
+    # Use fd if available
+    if command -v fd >/dev/null 2>&1; then
+        dir=$(fd --type d --hidden --max-depth 3 . 2>/dev/null \
+              | grep -E "($INCLUDE_HIDDEN)|^[^\.]" \
+              | fzf --prompt="📁 Choose directory: " \
+                    --preview='exa --tree -L 1 --color=always {} 2>/dev/null' \
+                    --preview-window=right:50%)
+    else
+        # fallback to find
+        dir=$(find . -type d 2>/dev/null \
+              | sed 's|^\./||' \
+              | grep -E "($INCLUDE_HIDDEN)|^[^\.]" \
+              | fzf --prompt="📁 Choose directory: " \
+                    --preview='exa --tree -L 1 --color=always {} 2>/dev/null' \
+                    --preview-window=right:50%)
+    fi
+
+    # exit if no selection
+    [ -z "$dir" ] && return
+
+    # move to directory
+    cd "$dir" || return
+    echo "📂 Moved to: $(pwd)"
+
+    # Automatically generate tmux session name
+    # Replace / with - and remove leading ./ for readability
+    session_name=$(echo "$PWD" | sed 's|/|-|g; s|^-||')
+
+    # create or attach
+    if tmux has-session -t "$session_name" 2>/dev/null; then
+        echo "🔁 Attaching to existing session: $session_name"
+    else
+        echo "🚀 Creating new tmux session: $session_name"
+        tmux new-session -d -s "$session_name" -c "$PWD"
+    fi
+
+    tmux attach-session -t "$session_name"
+}
+
