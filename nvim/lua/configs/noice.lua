@@ -24,12 +24,10 @@ noice.setup({
         backend = "nui",
         --- Add selection keymaps here
         keymap = {
-            select_prev = "<C-k>",
-            select_next = "<C-j>",
-            accept = "<C-k>",     -- Accept the suggestion
-            close = "<C-e>",
-            scroll_up = "<C-u>",
-            scroll_down = "<C-d>",
+            accept = "<C-y>",     -- Accept the suggestion
+            close = "<C-n>",
+            scroll_up = "<C-k>",
+            scroll_down = "<C-j>",
         },
     },
     cmdline = {

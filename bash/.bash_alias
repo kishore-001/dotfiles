@@ -104,3 +104,12 @@ alias dnetrm='docker network rm $(docker network ls -q | grep -v "bridge\|host\|
 
 alias dbuild='docker build -t'
 alias drun='docker run --rm -it'
+
+
+# Temp Scripts
+
+
+alias f='python formater.py'
+alias r='python reorder.py'
+alias rr='rm -f final.csv output.csv && : > input.txt && : > order.txt'
+
